@@ -146,9 +146,11 @@ const errors = {
   busy: 'Lagi ada yang kirim juga. Coba lagi sebentar.'
 };
 
-// Mode demo: nama contoh, tidak ada yang disimpan.
-const demo = action => action === 'status' ? { phase: 'open', roster: Array.from({ length: 11 },
-  (_, i) => ({ id: `demo${i}`, name: `Rekan ${i + 1}`, aliases: [], done: false })) } : { submitted: true };
+// Mode demo: tidak ada yang disimpan. Roster asli dikirim Apps Script (apps-script/Inkwell.gs).
+const demoRoster = [['Arlin'], ['Faustin'], ['Harry'], ['Juliett', 'Jul', 'Cijul', 'Julietta'], ['Lisa', 'Monalisa'],
+  ['Rani', 'Maharani'], ['Ricky'], ['Sebas', 'Sebastian'], ['Siska'], ['Vicky', 'Josephine'], ['Zaidan']]
+  .map(([name, ...aliases]) => ({ id: name.toLowerCase(), name, aliases, done: false }));
+const demo = action => action === 'status' ? { phase: 'open', roster: demoRoster } : { submitted: true };
 
 async function api(action, data = {}) {
   if (!SCRIPT_URL) return demo(action);
