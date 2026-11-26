@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Inkwell</title>
+  <link rel="stylesheet" href="quiz.css">
+</head>
+<body>
+<main>
+<section id="inkmate-quiz" aria-label="Inkwell">
+  <div class="quiz">
+    <header class="top"><span class="brand">Inkwell</span><span class="counter" hidden></span></header>
+    <progress value="1" aria-label="Pertanyaan" hidden></progress>
+    <div aria-live="polite">
+      <h1>Menyiapkan kuis…</h1>
+      <p class="done-copy" hidden></p>
+    </div>
+    <section class="results" aria-label="Hasil" hidden></section>
+    <button class="page-action" type="button" hidden></button>
+    <button class="sign-out" type="button" hidden>Ganti nama</button>
+    <form class="pin" hidden>
+      <label for="inkwell-pin">PIN admin</label>
+      <input id="inkwell-pin" type="password" inputmode="numeric" autocomplete="off">
+      <button type="submit">Masuk</button>
+    </form>
+    <div class="answer-dock">
+      <form hidden>
+        <label for="inkmate-quiz-input">Jawaban</label>
+        <div class="field">
+          <input id="inkmate-quiz-input" type="text" placeholder="Ketik nama Inkteammate" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="inkmate-quiz-list" autocomplete="off" spellcheck="false" enterkeyhint="next">
+          <span class="check" aria-hidden="true" hidden>✓</span>
+        </div>
+        <ul id="inkmate-quiz-list" class="list" role="listbox" aria-label="Saran nama Inkteammates" hidden></ul>
+        <p class="feedback" role="status" hidden></p>
+        <button type="submit" disabled>Lanjut</button>
+      </form>
+      <p class="page-error" role="alert" hidden></p>
+    </div>
+    <dialog aria-labelledby="confirm-title">
+      <form method="dialog">
+        <h2 id="confirm-title"></h2>
+        <p class="confirm-detail"></p>
+        <button value="confirm" class="confirm-action"></button>
+        <button value="cancel" class="sign-out" autofocus>Batal</button>
+      </form>
+    </dialog>
+    <noscript>Aktifkan JavaScript untuk membuka kuis.</noscript>
+  </div>
+</section>
+</main>
+<script type="module" src="quiz.mjs"></script>
+</body>
+</html>
