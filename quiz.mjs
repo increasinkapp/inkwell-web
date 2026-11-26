@@ -18,6 +18,7 @@ const results = root.querySelector('.results');
 const pageAction = root.querySelector('.page-action');
 const signOut = root.querySelector('.sign-out');
 const pageError = root.querySelector('.page-error');
+const resetButton = root.querySelector('.admin-reset');
 const dialog = root.querySelector('dialog');
 progress.max = questions.length;
 let roster = [];
@@ -171,6 +172,7 @@ function showPage(title, detail = '') {
   form.hidden = true;
   signOut.hidden = true;
   pinForm.hidden = true;
+  resetButton.hidden = true;
   count.hidden = true;
   progress.hidden = true;
   pageAction.hidden = true;
@@ -227,6 +229,22 @@ async function admin() {
   const labels = { draft: 'Periode belum dibuka', open: 'Pengisian dibuka', closed: 'Pengisian ditutup', revealed: 'Apresiasi terbit' };
   showPage(labels[state.phase], `${state.complete} dari ${state.total} Inkteammates sudah isi.`);
   if (state.totals) showResults(state.totals.map((row, index) => [index, row.map(person => `${person.name} · ${person.count}`)]));
+  resetButton.hidden = state.phase === 'draft' && !state.complete;
+  resetButton.onclick = async () => {
+    if (!await confirmAction('Reset periode?', 'Pengisian kembali kosong dan belum dibuka. Hasil lama disalin ke tab arsip di Sheet. PIN tetap sama.', 'Reset periode')) return;
+    resetButton.disabled = true;
+    pageAction.disabled = true;
+    pageError.hidden = true;
+    try {
+      await api('reset', { pin });
+      await admin();
+    } catch (error) {
+      showError(error.message);
+    } finally {
+      resetButton.disabled = false;
+      pageAction.disabled = false;
+    }
+  };
   const command = { draft: ['open', 'Buka pengisian'], open: ['close', 'Tutup pengisian'],
     closed: ['publish', 'Publikasikan apresiasi'] }[state.phase];
   if (!command) return;

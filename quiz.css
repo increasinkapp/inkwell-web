@@ -41,6 +41,7 @@ body{margin:12px}
 #inkmate-quiz .results-list li{padding:4px 0}
 #inkmate-quiz .sign-out{background:transparent;color:var(--ink);border:1px solid var(--line);margin-block-start:8px}
 #inkmate-quiz .top .sign-out{width:auto;min-height:44px;margin:0;padding-inline:12px;font-size:13px}
+#inkmate-quiz .admin-reset{background:transparent;color:var(--ink);border:1px solid var(--line);margin-block-start:8px}
 #inkmate-quiz .page-error{color:var(--soft);margin:8px 0 0}
 #inkmate-quiz dialog{width:min(354px, calc(100% - 32px));padding:20px;border:0;border-radius:16px;background:var(--card);color:var(--ink)}
 #inkmate-quiz dialog::backdrop{background:var(--backdrop)}
